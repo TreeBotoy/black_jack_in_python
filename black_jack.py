@@ -77,10 +77,10 @@ my_frame = Frame(root, bg="green")
 my_frame.pack(pady=20)
 
 dealer_frame = LabelFrame(my_frame, text="Dealer", bd=0)
-dealer_frame.grid(row=0, column=0, padx=20, ipadx=20)
+dealer_frame.pack(padx=20, ipadx=20)
 
 player_frame = LabelFrame(my_frame, text="Player", bd=0)
-player_frame.grid(row=0, column=1, ipadx=20)
+player_frame.pack(ipadx=20, pady=10)
 
 dealer_frame = Label(dealer_frame, text="")
 dealer_frame.pack(pady=20)
@@ -88,11 +88,37 @@ dealer_frame.pack(pady=20)
 player_frame = Label(player_frame, text="")
 player_frame.pack(pady=20)
 
-dealer_label = Label(dealer_frame, text="")
-dealer_label.pack(pady=20)
+#dealer cards in frames
+dealer_label_1 = Label(dealer_frame, text="")
+dealer_label_1.grid(row=0, column=0,padx=20, pady=20)
 
-player_label = Label(player_frame, text="")
-player_label.pack(pady=20)
+dealer_label_2 = Label(dealer_frame, text="")
+dealer_label_2.grid(row=0, column=1,padx=20, pady=20)
+
+dealer_label_3 = Label(dealer_frame, text="")
+dealer_label_3.grid(row=0, column=2,padx=20, pady=20)
+
+dealer_label_4 = Label(dealer_frame, text="")
+dealer_label_4.grid(row=0, column=3,padx=20, pady=20)
+
+dealer_label_5 = Label(dealer_frame, text="")
+dealer_label_5.grid(row=0, column=4,padx=20, pady=20)
+
+#player cards in frames
+player_label_1 = Label(player_frame, text="")
+player_label_1.grid(row=1, column=0, padx=20, pady=20)
+
+player_label_2 = Label(player_frame, text="")
+player_label_2.grid(row=1, column=1, padx=20, pady=20)
+
+player_label_3 = Label(player_frame, text="")
+player_label_3.grid(row=1, column=2, padx=20, pady=20)
+
+player_label_4 = Label(player_frame, text="")
+player_label_4.grid(row=1, column=3, padx=20, pady=20)
+
+player_label_5 = Label(player_frame, text="")
+player_label_5.grid(row=1, column=4, padx=20, pady=20)
 
 #Buttons
 button_frame = Frame(root, bg="green")
