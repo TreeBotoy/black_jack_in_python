@@ -42,6 +42,7 @@ def shuffle():
     card=random.choice(deck)
     deck.remove(card)
     player.append(card)
+
     global player_image
     player_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
     player_label.config(image=player_image)
@@ -55,12 +56,17 @@ def hit():
         card=random.choice(deck)
         deck.remove(card)
         dealer.append(card)
-        dealer_label.config(text=card)
-
+        global dealer_image
+        dealer_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
+        dealer_label.config(image=dealer_image)
+        
         card=random.choice(deck)
         deck.remove(card)
         player.append(card)
-        player_label.config(text=card)
+        global player_image
+        player_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
+        player_label.config(image=player_image)
+        
 
         root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
 
