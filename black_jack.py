@@ -1,22 +1,31 @@
 #imports
 from tkinter import *
 import random
+from PIL import Image, ImageTk
 
 root = Tk()
 root.title("Black Jack Game")
 root.geometry("900x500")
 root.configure(background="green")
 
+#card images
+def resize_cards(card):
+    our_card = Image.open(card)
+    our_card_resized = our_card.resize((150, 218))
+    global our_card_image
+    our_card_image = ImageTk.PhotoImage(our_card_resized)
+    return our_card_image
+
 #card shuffling
 def shuffle():
-    card_suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+    card_suits = ["hearts", "diamonds", "spades", "clubs"]
     card_values = range(2, 15)
 
     global deck
     deck = []
     for suit in card_suits:
         for value in card_values:
-            deck.append(f"{value} of {suit}")
+            deck.append(f"{value}_of_{suit}")
     
     global player, dealer
     dealer = []
@@ -25,11 +34,18 @@ def shuffle():
     card=random.choice(deck)
     deck.remove(card)
     dealer.append(card)
-    dealer_label.config(text=card)
+
+    global dealer_image
+    dealer_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
+    dealer_label.config(image=dealer_image)
 
     card=random.choice(deck)
     deck.remove(card)
     player.append(card)
+    global player_image
+    player_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
+    player_label.config(image=player_image)
+
     player_label.config(text=card)
 
     root.title(f"Black Jack Game - Deck Shuffled! {len(deck)} cards left")
@@ -80,9 +96,5 @@ hit_button = Button(root, text="Hit", font=("Helvetica", 14), bg="white", fg="bl
 hit_button.pack(pady=20)
 
 shuffle()
-
-#cards
-
-
 
 root.mainloop()
