@@ -32,6 +32,25 @@ def shuffle():
     player.append(card)
     player_label.config(text=card)
 
+    root.title(f"Black Jack Game - Deck Shuffled! {len(deck)} cards left")
+
+def hit():
+    try:
+        card=random.choice(deck)
+        deck.remove(card)
+        dealer.append(card)
+        dealer_label.config(text=card)
+
+        card=random.choice(deck)
+        deck.remove(card)
+        player.append(card)
+        player_label.config(text=card)
+
+        root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
+
+    except:
+        root.title(f"Black Jack Game - card deck empty!")
+
 my_frame = Frame(root, bg="green")
 my_frame.pack(pady=20)
 
@@ -57,15 +76,13 @@ player_label.pack(pady=20)
 shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), bg="white", fg="black", command=shuffle)
 shuffle_button.pack(pady=20)
 
-hit_button = Button(root, text="Hit", font=("Helvetica", 14), bg="white", fg="black")
+hit_button = Button(root, text="Hit", font=("Helvetica", 14), bg="white", fg="black", command=hit)
 hit_button.pack(pady=20)
+
+shuffle()
 
 #cards
 
 
-
-#stand
-
-#hit
 
 root.mainloop()
