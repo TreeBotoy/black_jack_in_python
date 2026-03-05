@@ -63,7 +63,6 @@ def dealer_hit():
             deck.remove(dealer_card)
             dealer.append(dealer_card)
             global dealer_image_1, dealer_image_2, dealer_image_3, dealer_image_4, dealer_image_5
-            dealer_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
         
             if dealer_spot == 0:
                 dealer_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
@@ -97,11 +96,10 @@ def player_hit():
     global player_spot
     if player_spot < 5:
         try:
-            player_card=random.choice(deck)
+            player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
             global player_image_1, player_image_2, player_image_3, player_image_4, player_image_5
-            player_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
         
             if player_spot == 0:
                 player_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
@@ -156,64 +154,64 @@ def hit():
         root.title(f"Black Jack Game - card deck empty!")
 
 my_frame = Frame(root, bg="green")
-my_frame.pack(pady=20)
+my_frame.pack(pady = 20)
 
-dealer_frame = LabelFrame(my_frame, text="Dealer", bd=0)
-dealer_frame.pack(padx=20, ipadx=20)
+dealer_frame = LabelFrame(my_frame, text = "Dealer", bd = 0)
+dealer_frame.pack(padx = 20, ipadx = 20)
 
-player_frame = LabelFrame(my_frame, text="Player", bd=0)
-player_frame.pack(ipadx=20, pady=10)
+player_frame = LabelFrame(my_frame, text = "Player", bd = 0)
+player_frame.pack(ipadx = 20, pady = 10)
 
-dealer_frame = Label(dealer_frame, text="")
-dealer_frame.pack(pady=20)
+dealer_frame = Label(dealer_frame, text = "")
+dealer_frame.pack(pady = 20)
 
-player_frame = Label(player_frame, text="")
-player_frame.pack(pady=20)
+player_frame = Label(player_frame, text = "")
+player_frame.pack(pady = 20)
 
 #dealer cards in frames
-dealer_label_1 = Label(dealer_frame, text="")
-dealer_label_1.grid(row=0, column=0,padx=20, pady=20)
+dealer_label_1 = Label(dealer_frame, text = "")
+dealer_label_1.grid(row = 0, column = 0, pady = 20, padx = 20)
 
-dealer_label_2 = Label(dealer_frame, text="")
-dealer_label_2.grid(row=0, column=1,padx=20, pady=20)
+dealer_label_2 = Label(dealer_frame, text = "")
+dealer_label_2.grid(row = 0, column = 1, pady = 20, padx = 20)
 
-dealer_label_3 = Label(dealer_frame, text="")
-dealer_label_3.grid(row=0, column=2,padx=20, pady=20)
+dealer_label_3 = Label(dealer_frame, text = "")
+dealer_label_3.grid(row = 0, column = 2, pady = 20, padx = 20)
 
-dealer_label_4 = Label(dealer_frame, text="")
-dealer_label_4.grid(row=0, column=3,padx=20, pady=20)
+dealer_label_4 = Label(dealer_frame, text = "")
+dealer_label_4.grid(row = 0, column = 3, pady = 20, padx = 20)
 
-dealer_label_5 = Label(dealer_frame, text="")
-dealer_label_5.grid(row=0, column=4,padx=20, pady=20)
+dealer_label_5 = Label(dealer_frame, text = "")
+dealer_label_5.grid(row = 0, column = 4, pady = 20, padx = 20)
 
 #player cards in frames
 player_label_1 = Label(player_frame, text="")
-player_label_1.grid(row=1, column=0, padx=20, pady=20)
+player_label_1.grid(row = 1, column = 0, pady = 20, padx = 20)
 
-player_label_2 = Label(player_frame, text="")
-player_label_2.grid(row=1, column=1, padx=20, pady=20)
+player_label_2 = Label(player_frame, text = "")
+player_label_2.grid(row = 1, column = 1, pady = 20, padx = 20)
 
-player_label_3 = Label(player_frame, text="")
-player_label_3.grid(row=1, column=2, padx=20, pady=20)
+player_label_3 = Label(player_frame, text = "")
+player_label_3.grid(row = 1, column = 2, pady = 20, padx = 20)
 
-player_label_4 = Label(player_frame, text="")
-player_label_4.grid(row=1, column=3, padx=20, pady=20)
+player_label_4 = Label(player_frame, text = "")
+player_label_4.grid(row = 1, column = 3, pady = 20, padx = 20)
 
 player_label_5 = Label(player_frame, text="")
-player_label_5.grid(row=1, column=4, padx=20, pady=20)
+player_label_5.grid(row = 1, column = 4, pady = 20, padx = 20)
 
 #Buttons
 button_frame = Frame(root, bg="green")
-button_frame.pack(pady=20)
+button_frame.pack(pady = 20)
 
-shuffle_button = Button(button_frame, text="Shuffle Deck", font=("Helvetica", 14), bg="white", fg="black", command=shuffle)
-shuffle_button.grid(row=0, column=0)
+shuffle_button = Button(button_frame, text="Shuffle Deck", font = ("Helvetica", 14), bg = "white", fg = "black", command = shuffle)
+shuffle_button.grid(row = 0, column = 0)
 
-hit_button = Button(button_frame, text="Hit", font=("Helvetica", 14), bg="white", fg="black", command=hit)
-hit_button.grid(row=0, column=1, padx=10)
+hit_button = Button(button_frame, text="Hit", font = ("Helvetica", 14), bg="white", fg = "black", command = player_hit)
+hit_button.grid(row = 0, column = 1, padx = 10)
 
-stand_button = Button(button_frame, text="Stand", font=("Helvetica", 14), bg="white", fg="black")
-stand_button.grid(row=0, column=2)
+stand_button = Button(button_frame, text = "Stand", font = ("Helvetica", 14), bg = "white", fg = "black")
+stand_button.grid(row = 0, column = 2)
 
 shuffle()
  
