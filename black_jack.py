@@ -47,30 +47,54 @@ def shuffle():
     dealer_spot = 0
     player_spot = 0
 
-    card=random.choice(deck)
-    deck.remove(card)
-    dealer.append(card)
+    dealer_hit()
+    dealer_hit()    
 
-    global dealer_image
-    dealer_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
-    dealer_label.config(image=dealer_image)
-
-    card=random.choice(deck)
-    deck.remove(card)
-    player.append(card)
-
-    global player_image
-    player_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
-    player_label.config(image=player_image)
-
-    player_label.config(text=card)
+    player_hit()
+    player_hit()
 
     root.title(f"Black Jack Game - Deck Shuffled! {len(deck)} cards left")
 
 def dealer_hit():
-    pass
+    global dealer_spot
+    if dealer_spot < 5:
+        try:
+            dealer_card=random.choice(deck)
+            deck.remove(dealer_card)
+            dealer.append(dealer_card)
+            global dealer_image_1, dealer_image_2, dealer_image_3, dealer_image_4, dealer_image_5
+            dealer_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
+        
+            if dealer_spot == 0:
+                dealer_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
+                dealer_label_1.config(image=dealer_image_1)
+                dealer_spot += 1
+            elif dealer_spot == 1:
+                dealer_image_2 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
+                dealer_label_2.config(image=dealer_image_2)
+                dealer_spot += 1
+            elif dealer_spot == 2:
+                dealer_image_3 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
+                dealer_label_3.config(image=dealer_image_3)
+                dealer_spot += 1
+            elif dealer_spot == 3:
+                dealer_image_4 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
+                dealer_label_4.config(image=dealer_image_4)
+                dealer_spot += 1
+            elif dealer_spot == 4:
+                dealer_image_5 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{dealer_card}.png')
+                dealer_label_5.config(image=dealer_image_5)
+                dealer_spot += 1
+    
+
+
+            root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
+
+        except:
+            root.title(f"Black Jack Game - card deck empty!")
 
 def player_hit():
+    global player_spot
     if player_spot < 5:
         try:
             player_card=random.choice(deck)
@@ -102,7 +126,7 @@ def player_hit():
     
 
 
-        root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
+            root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
 
         except:
             root.title(f"Black Jack Game - card deck empty!")
