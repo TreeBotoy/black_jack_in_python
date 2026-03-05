@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 root = Tk()
 root.title("Black Jack Game")
-root.geometry("900x500")
+root.geometry("1200x800")
 root.configure(background="green")
 
 #card images
@@ -59,7 +59,7 @@ def hit():
         global dealer_image
         dealer_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
         dealer_label.config(image=dealer_image)
-        
+
         card=random.choice(deck)
         deck.remove(card)
         player.append(card)
@@ -95,12 +95,18 @@ player_label = Label(player_frame, text="")
 player_label.pack(pady=20)
 
 #Buttons
-shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), bg="white", fg="black", command=shuffle)
-shuffle_button.pack(pady=20)
+button_frame = Frame(root, bg="green")
+button_frame.pack(pady=20)
 
-hit_button = Button(root, text="Hit", font=("Helvetica", 14), bg="white", fg="black", command=hit)
-hit_button.pack(pady=20)
+shuffle_button = Button(button_frame, text="Shuffle Deck", font=("Helvetica", 14), bg="white", fg="black", command=shuffle)
+shuffle_button.grid(row=0, column=0)
+
+hit_button = Button(button_frame, text="Hit", font=("Helvetica", 14), bg="white", fg="black", command=hit)
+hit_button.grid(row=0, column=1, padx=10)
+
+stand_button = Button(button_frame, text="Stand", font=("Helvetica", 14), bg="white", fg="black")
+stand_button.grid(row=0, column=2)
 
 shuffle()
-
+ 
 root.mainloop()
