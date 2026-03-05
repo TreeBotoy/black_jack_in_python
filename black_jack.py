@@ -67,6 +67,48 @@ def shuffle():
 
     root.title(f"Black Jack Game - Deck Shuffled! {len(deck)} cards left")
 
+def dealer_hit():
+    pass
+
+def player_hit():
+    if player_spot < 5:
+        try:
+            player_card=random.choice(deck)
+            deck.remove(player_card)
+            player.append(player_card)
+            global player_image_1, player_image_2, player_image_3, player_image_4, player_image_5
+            player_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
+        
+            if player_spot == 0:
+                player_image_1 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
+                player_label_1.config(image=player_image_1)
+                player_spot += 1
+            elif player_spot == 1:
+                player_image_2 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
+                player_label_2.config(image=player_image_2)
+                player_spot += 1
+            elif player_spot == 2:
+                player_image_3 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
+                player_label_3.config(image=player_image_3)
+                player_spot += 1
+            elif player_spot == 3:
+                player_image_4 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
+                player_label_4.config(image=player_image_4)
+                player_spot += 1
+            elif player_spot == 4:
+                player_image_5 = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{player_card}.png')
+                player_label_5.config(image=player_image_5)
+                player_spot += 1
+    
+
+
+        root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
+
+        except:
+            root.title(f"Black Jack Game - card deck empty!")
+
+
+
 def hit():
     try:
         card=random.choice(deck)
