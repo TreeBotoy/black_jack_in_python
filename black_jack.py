@@ -18,6 +18,20 @@ def resize_cards(card):
 
 #card shuffling
 def shuffle():
+    #card deck
+    dealer_label_1.config(image="")
+    dealer_label_2.config(image="")
+    dealer_label_3.config(image="")
+    dealer_label_4.config(image="")
+    dealer_label_5.config(image="")
+
+    player_label_1.config(image="")
+    player_label_2.config(image="")
+    player_label_3.config(image="")
+    player_label_4.config(image="")
+    player_label_5.config(image="")
+
+    #card faces
     card_suits = ["hearts", "diamonds", "spades", "clubs"]
     card_values = range(2, 15)
 
@@ -27,9 +41,11 @@ def shuffle():
         for value in card_values:
             deck.append(f"{value}_of_{suit}")
     
-    global player, dealer
+    global player, dealer, dealer_spot, player_spot
     dealer = []
     player = []
+    dealer_spot = 0
+    player_spot = 0
 
     card=random.choice(deck)
     deck.remove(card)
