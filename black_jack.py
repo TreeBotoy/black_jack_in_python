@@ -8,6 +8,9 @@ root.title("Black Jack Game")
 root.geometry("1200x800")
 root.configure(background="green")
 
+def black_jack_shuffle(player):
+    pass
+
 #card images
 def resize_cards(card):
     our_card = Image.open(card)
@@ -41,15 +44,16 @@ def shuffle():
         for value in card_values:
             deck.append(f"{value}_of_{suit}")
     
-    global player, dealer, dealer_spot, player_spot
+    global player, dealer, dealer_spot, player_spot, dealer_score, player_score
     dealer = []
     player = []
+    dealer_score = []
+    player_score = []
     dealer_spot = 0
     player_spot = 0
 
     dealer_hit()
     dealer_hit()    
-
     player_hit()
     player_hit()
 
@@ -62,6 +66,14 @@ def dealer_hit():
             dealer_card = random.choice(deck)
             deck.remove(dealer_card)
             dealer.append(dealer_card)
+            deal_card = int(dealer_card.split("_", 1)[0])
+            if deal_card == 14:
+                dealer_score.append(11)
+            elif deal_card == 11 or deal_card == 12 or deal_card == 13:
+                dealer_score.append(10)
+            else:
+                dealer_score.append(deal_card)
+
             global dealer_image_1, dealer_image_2, dealer_image_3, dealer_image_4, dealer_image_5
         
             if dealer_spot == 0:
@@ -85,12 +97,12 @@ def dealer_hit():
                 dealer_label_5.config(image=dealer_image_5)
                 dealer_spot += 1
     
-
-
             root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
 
         except:
             root.title(f"Black Jack Game - card deck empty!")
+
+        black_jack_shuffle("dealer")
 
 def player_hit():
     global player_spot
@@ -99,6 +111,14 @@ def player_hit():
             player_card = random.choice(deck)
             deck.remove(player_card)
             player.append(player_card)
+            play_card = int(player_card.split("_", 1)[0])
+            if play_card == 14:
+                player_score.append(11)
+            elif play_card == 11 or play_card == 12 or play_card == 13:
+                player_score.append(10)
+            else:
+                player_score.append(play_card)
+
             global player_image_1, player_image_2, player_image_3, player_image_4, player_image_5
         
             if player_spot == 0:
@@ -122,8 +142,6 @@ def player_hit():
                 player_label_5.config(image=player_image_5)
                 player_spot += 1
     
-
-
             root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
 
         except:
