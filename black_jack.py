@@ -9,6 +9,32 @@ root.title("Black Jack Game")
 root.geometry("1200x800")
 root.configure(background="green")
 
+
+def stand():
+    global black_jack_status, player_total, dealer_total, player_score, dealer_score
+    player_total = 0
+    dealer_total = 0
+
+    for score in dealer_score:
+        dealer_total += score
+    for score in player_score:
+        player_total += score
+    hit_button.config(state = "disabled")
+    stand_button.config(state = "disabled")
+
+    if dealer_total >= 17:
+        if dealer_total > 21:
+            messagebox.showinfo("Dealer Busted!", f"Dealer has busted! Player wins! {dealer_total}")
+        elif dealer_total == player_total:
+            messagebox.showinfo("It's a tie!", f"Dealer and Player have the same total of {dealer_total}! It's a tie!")           
+        elif dealer_total > player_total:
+            messagebox.showinfo("Dealer Wins!", f"Dealer wins with a total of {dealer_total} against player's total of {player_total}!")
+        else:
+            messagebox.showinfo("Player Wins!", f"Player wins with a total of {player_total} against dealer's total of {dealer_total}!")
+    else:
+        dealer_hit()
+        stand()
+        
 def black_jack_shuffle(player):
     global black_jack_status, player_total, dealer_total, player_score
     player_total = 0
@@ -301,7 +327,7 @@ shuffle_button.grid(row = 0, column = 0)
 hit_button = Button(button_frame, text="Hit", font = ("Helvetica", 14), bg="white", fg = "black", command = player_hit)
 hit_button.grid(row = 0, column = 1, padx = 10)
 
-stand_button = Button(button_frame, text = "Stand", font = ("Helvetica", 14), bg = "white", fg = "black")
+stand_button = Button(button_frame, text = "Stand", font = ("Helvetica", 14), bg = "white", fg = "black", command = stand)
 stand_button.grid(row = 0, column = 2)
 
 shuffle()
