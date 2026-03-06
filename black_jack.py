@@ -10,7 +10,7 @@ root.geometry("1200x800")
 root.configure(background="green")
 
 def black_jack_shuffle(player):
-    global black_jack_status, player_total, dealer_total
+    global black_jack_status, player_total, dealer_total, player_score
     player_total = 0
     dealer_total = 0
 
@@ -18,10 +18,6 @@ def black_jack_shuffle(player):
         if len(dealer_score) == 2:
             if dealer_score[0] + dealer_score[1] == 21:
                 black_jack_status["dealer"] = "yes"
-
-                messagebox.showinfo("Black Jack!", "Dealer has Black Jack! Dealer wins!") 
-                hit_button.config(state = "disabled")
-                stand_button.config(state = "disabled")
 
     if player == "player":
         if len(player_score) == 2:
@@ -33,7 +29,21 @@ def black_jack_shuffle(player):
                 if player_total == 21:
                     black_jack_status["player"] = "yes"
                 elif player_total > 21:
-                    black_jack_status["player"] = "busted"
+                    for card_num, card in enumerate(player_score):
+                        if card == 11:
+                            player_score[card_num] = 1
+                            
+                            player_total = 0
+                            for score in player_score:
+                                player_total += score
+                            if player_total > 21:
+                                 black_jack_status["player"] = "busted"
+
+                    else:
+                        if player_total == 21:
+                            black_jack_status["player"] = "yes"
+                        if player_total > 21:
+                            black_jack_status["player"] = "busted"
 
     if len(dealer_score) == 2 and len(player_score) == 2:
         if black_jack_status["dealer"] == "yes" and black_jack_status["player"] == "yes":
