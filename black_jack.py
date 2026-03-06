@@ -19,17 +19,17 @@ def resize_cards(card):
 #card shuffling
 def shuffle():
     #card deck
-    dealer_label_1.config(image="")
-    dealer_label_2.config(image="")
-    dealer_label_3.config(image="")
-    dealer_label_4.config(image="")
-    dealer_label_5.config(image="")
+    dealer_label_1.config(image = "")
+    dealer_label_2.config(image = "")
+    dealer_label_3.config(image = "")
+    dealer_label_4.config(image = "")
+    dealer_label_5.config(image = "")
 
-    player_label_1.config(image="")
-    player_label_2.config(image="")
-    player_label_3.config(image="")
-    player_label_4.config(image="")
-    player_label_5.config(image="")
+    player_label_1.config(image = "")
+    player_label_2.config(image = "")
+    player_label_3.config(image = "")
+    player_label_4.config(image = "")
+    player_label_5.config(image = "")
 
     #card faces
     card_suits = ["hearts", "diamonds", "spades", "clubs"]
@@ -59,7 +59,7 @@ def dealer_hit():
     global dealer_spot
     if dealer_spot < 5:
         try:
-            dealer_card=random.choice(deck)
+            dealer_card = random.choice(deck)
             deck.remove(dealer_card)
             dealer.append(dealer_card)
             global dealer_image_1, dealer_image_2, dealer_image_3, dealer_image_4, dealer_image_5
@@ -133,19 +133,19 @@ def player_hit():
 
 def hit():
     try:
-        card=random.choice(deck)
+        card = random.choice(deck)
         deck.remove(card)
         dealer.append(card)
         global dealer_image
         dealer_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
-        dealer_label.config(image=dealer_image)
+        dealer_label.config(image = dealer_image)
 
-        card=random.choice(deck)
+        card = random.choice(deck)
         deck.remove(card)
         player.append(card)
         global player_image
         player_image = resize_cards(f'D:/codes/visual/black_jack_game/Playing Cards/PNG-cards-1.3/{card}.png')
-        player_label.config(image=player_image)
+        player_label.config(image = player_image)
         
 
         root.title(f"Black Jack Game - Hit! {len(deck)} cards left")
