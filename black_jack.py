@@ -13,6 +13,8 @@ def black_jack_shuffle(player):
     if player == "dealer":
         if len(dealer_score) == 2:
             if dealer_score[0] + dealer_score[1] == 21:
+                black_jack_status["dealer"] = "yes"
+
                 messagebox.showinfo("Black Jack!", "Dealer has Black Jack! Dealer wins!") 
                 hit_button.config(state = "disabled")
                 stand_button.config(state = "disabled")
@@ -20,9 +22,25 @@ def black_jack_shuffle(player):
     if player == "player":
         if len(player_score) == 2:
             if player_score[0] + player_score[1] == 21:
+                black_jack_status["player"] = "yes"
+
                 messagebox.showinfo("Black Jack!", "Player has Black Jack! Player wins!") 
                 hit_button.config(state = "disabled")
                 stand_button.config(state = "disabled")
+
+    if len(dealer_score) == 2 and len(player_score) == 2:
+        if black_jack_status["dealer"] == "yes" and black_jack_status["player"] == "yes":
+            messagebox.showinfo("Black Jack!", "Both dealer and player have Black Jack! It's a tie!")
+            hit_button.config(state = "disabled")
+            stand_button.config(state = "disabled")
+        elif black_jack_status["dealer"] == "yes":
+            messagebox.showinfo("Black Jack!", "Dealer has Black Jack! Dealer wins!") 
+            hit_button.config(state = "disabled")
+            stand_button.config(state = "disabled")
+        elif black_jack_status["player"] == "yes":
+            messagebox.showinfo("Black Jack!", "Player has Black Jack! Player wins!") 
+            hit_button.config(state = "disabled")
+            stand_button.config(state = "disabled")
 
 #card images
 def resize_cards(card):
@@ -34,6 +52,9 @@ def resize_cards(card):
 
 #card shuffling
 def shuffle():
+    global black_jack_status
+    black_jack_status = {"dealer": "no", "player": "no"}
+
     hit_button.config(state = "normal")
     stand_button.config(state = "normal")
     #card deck
