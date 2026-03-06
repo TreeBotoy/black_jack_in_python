@@ -2,6 +2,7 @@
 from tkinter import *
 import random
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 root = Tk()
 root.title("Black Jack Game")
@@ -9,7 +10,19 @@ root.geometry("1200x800")
 root.configure(background="green")
 
 def black_jack_shuffle(player):
-    pass
+    if player == "dealer":
+        if len(dealer_score) == 2:
+            if dealer_score[0] + dealer_score[1] == 21:
+                messagebox.showinfo("Black Jack!", "Dealer has Black Jack! Dealer wins!") 
+                hit_button.config(state = "disabled")
+                stand_button.config(state = "disabled")
+
+    if player == "player":
+        if len(player_score) == 2:
+            if player_score[0] + player_score[1] == 21:
+                messagebox.showinfo("Black Jack!", "Player has Black Jack! Player wins!") 
+                hit_button.config(state = "disabled")
+                stand_button.config(state = "disabled")
 
 #card images
 def resize_cards(card):
@@ -21,6 +34,8 @@ def resize_cards(card):
 
 #card shuffling
 def shuffle():
+    hit_button.config(state = "normal")
+    stand_button.config(state = "normal")
     #card deck
     dealer_label_1.config(image = "")
     dealer_label_2.config(image = "")
@@ -147,7 +162,7 @@ def player_hit():
         except:
             root.title(f"Black Jack Game - card deck empty!")
 
-
+        black_jack_shuffle("player")
 
 def hit():
     try:
